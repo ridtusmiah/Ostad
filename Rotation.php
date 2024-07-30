@@ -16,7 +16,7 @@
     }
 
     // Driver code
-    $input1 = fgets(STDIN);
-    $input2 = fgets(STDIN);        
+    $S = fgets(STDIN);
+    $T = fgets(STDIN);        
     rotation_string($S, $T);
 ?>
