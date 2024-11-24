@@ -1,0 +1,33 @@
+<?php
+
+function stringPermutations($input) {
+    $result = [];
+    $length = strlen($input);
+
+    if ($length == 0) return $result;
+
+    if ($length == 1) {
+        return [$input];
+    }
+
+    for ($i = 0; $i < $length; $i++) {
+        $char = $input[$i];
+        $remaining = substr($input, 0, $i) . substr($input, $i + 1);
+        foreach (stringPermutations($remaining) as $perm) {
+            $result[] = $char . $perm;
+        }
+    }
+
+    return $result;
+}
+
+
+$input = trim(fgets(STDIN));
+
+if (strlen($input) == 0) {
+} else {
+    $permutations = array_unique(stringPermutations($input));
+    sort($permutations);
+    echo implode(" ", $permutations);
+}
+?>
