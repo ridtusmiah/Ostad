@@ -1,0 +1,24 @@
+<?php
+
+function longestSubstringLength($input) {
+    $n = strlen($input);
+    $maxLength = 0;
+    $start = 0;
+    $charIndex = [];
+
+    for ($end = 0; $end < $n; $end++) {
+        $char = $input[$end];
+        if (isset($charIndex[$char]) && $charIndex[$char] >= $start) {
+            $start = $charIndex[$char] + 1;
+        }
+        $charIndex[$char] = $end;
+        $maxLength = max($maxLength, $end - $start + 1);
+    }
+
+    return $maxLength;
+}
+
+$input = trim(fgets(STDIN));
+echo longestSubstringLength($input) . "\n";
+
+?>
